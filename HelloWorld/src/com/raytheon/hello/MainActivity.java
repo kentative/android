@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         // change 1
         // change 2
+        // change 3
         
         return true;
     }
