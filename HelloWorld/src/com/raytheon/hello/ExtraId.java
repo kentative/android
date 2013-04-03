@@ -4,6 +4,7 @@ public enum ExtraId {
 	
 	UserName,
 	UserAddress,
-	UserState
+	UserState, 
+	UserPhone
 
 }
