@@ -4,5 +4,9 @@
     <string name="app_name">HelloWorld</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string name="name_prompt">What is your name?</string>
+    <string name="name_hint">Last, First</string>
+    <string name="submit_btn_label">Submit</string>
 
 </resources>
