@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Main Activity -->
     <string name="app_name">HelloWorld</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="greetings">Hello</string>
+    <string name="unknown_user">John Doe</string>
+    <string name="bye_btn_lbl">Bye</string>
     
+    <!-- Lab01 Activity -->
     <string name="name_prompt">What is your name?</string>
-    <string name="name_hint">Last, First</string>
-    <string name="submit_btn_label">Submit</string>
+    <string name="name_hint">First name or nickname</string>
+    <string name="submit_btn_lbl">Submit</string>
 
 </resources>
