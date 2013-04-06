@@ -1,0 +1,170 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
+    tools:context=".MainActivity" >
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:gravity="center_vertical|fill_horizontal"
+        android:hint="@string/name_prompt"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nameEditText"
+        android:layout_below="@+id/nameEditText"
+        android:ems="10"
+         android:hint="@string/phone_prompt"
+        android:gravity="fill_horizontal"
+        android:inputType="phone" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/phoneEditText"
+        android:layout_below="@+id/phoneEditText"
+        android:gravity="center_horizontal" >
+
+        <Space
+            android:layout_width="wrap_content"            
+            android:layout_height="50sp" />
+                
+        <TextView
+            android:id="@+id/editText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="@string/cheese_selection"
+            android:textColor="@color/color_red"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        
+        <RadioGroup android:id="@+id/cheeseRadioGroup" android:orientation="horizontal">
+             
+            <RadioButton
+                android:id="@+id/cheeseRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_cheese"
+                android:textSize="18sp" />
+
+            
+
+            <RadioButton
+                android:id="@+id/cheeseMoreRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_more_cheese"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/cheeseNoneRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_cheese_none"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <Space
+            android:layout_width="wrap_content"            
+            android:layout_height="50sp" />
+                
+        <TextView
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="@string/header_pizza_shape"
+            android:textColor="@color/color_red"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RadioGroup android:orientation="horizontal" android:id="@+id/shapeRadioGroup" >
+
+            <RadioButton
+                android:id="@+id/roundRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shape_round"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/squareRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shape_square"
+                android:textSize="18sp" />
+
+        </RadioGroup>
+
+        <Space
+            android:layout_width="wrap_content"            
+            android:layout_height="50sp" />
+
+        <TextView
+            android:id="@+id/editText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="@string/header_topping"
+            android:textColor="@color/color_red"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/toppingPepperoni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/topping_pepperoni" />
+
+        <CheckBox
+            android:id="@+id/toppingVeggies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/topping_veggies" />
+
+        <CheckBox
+            android:id="@+id/toppingMushroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/topping_mushroom" />
+
+        <CheckBox
+            android:id="@+id/toppingAnchovies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/topping_anchovies" />
+
+        <Space android:layout_height="50sp" />
+
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:text="@string/place_order"
+        android:textColor="@color/color_red" />
+
+</RelativeLayout>

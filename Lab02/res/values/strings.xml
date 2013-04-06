@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lab02</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="name_prompt">Enter your name</string>
+    <string name="phone_prompt">Your phone number</string>
+    <string name="base_cheese">cheese</string>
+    <string name="base_more_cheese">2x cheese</string>
+    <string name="shape_round">Round</string>
+    <string name="shape_square">Square</string>
+    <string name="topping_pepperoni">Pepperoni</string>
+    <string name="topping_mushroom">Mushrooms</string>
+    <string name="topping_veggies">Veggies</string>
+    <string name="topping_anchovies">Anchovies</string>
+    <string name="topping_none">no toppings</string>
+    <string name="place_order">SMS Place your order</string>
+    <string name="header_topping">Select your toppings</string>
+    <string name="header_pizza_shape">Select type of pizza</string>
+    <string name="base_cheese_none">no cheese</string>
+    <string name="cheese_selection">Would you like cheese?</string>
+    <color name="color_bg">#A00C</color>
+    <color name="color_white">#AFFF</color>
+    <color name="color_red">#AC00</color>
+
+</resources>
