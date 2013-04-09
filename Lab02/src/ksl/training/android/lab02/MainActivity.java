@@ -63,6 +63,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		if (customerInfo.getName().length() == 0 || customerInfo.getPhone().length() == 0) {
 			Toast.makeText(getApplicationContext(), R.string.error01, Toast.LENGTH_LONG).show();
+			return;
 		}
 		
 		if (toppings == null) {
