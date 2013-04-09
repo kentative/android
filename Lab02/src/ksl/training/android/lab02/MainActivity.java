@@ -6,6 +6,9 @@ import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.res.Resources;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,7 +40,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		Button btn = (Button) findViewById(R.id.submitBtn);
 		btn.setOnClickListener(this);
-		 
+		
+		EditText phoneEditText = (EditText) findViewById(R.id.phoneEditText);
+		phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+				 
 	}
 
 	@Override
@@ -54,6 +60,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		PizzaInfo pizzaInfo = getPizzaInfo();
 		String toppings = pizzaInfo.getToppings();
 		Resources resc = getResources();
+
+		if (customerInfo.getName().length() == 0 || customerInfo.getPhone().length() == 0) {
+			Toast.makeText(getApplicationContext(), R.string.error01, Toast.LENGTH_LONG).show();
+		}
+		
 		if (toppings == null) {
 			toppings = resc.getString(R.string.topping_none);
 		}
