@@ -3,6 +3,7 @@ package edu.calpoly.android.lab3.tests;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.KeyEvent;
@@ -14,92 +15,98 @@ import edu.calpoly.android.lab3.Joke;
 import edu.calpoly.android.lab3.SimpleJokeList;
 
 public class SimpleJokeListTest extends ActivityInstrumentationTestCase2<SimpleJokeList> {
+	
+	// Where's the TypeOf method in java?
+	private ArrayList<Joke> jokeListType = null;
+	private EditText jokeEditTextType  = null;
+	private Button jokeButtonType  = null;
+	private LinearLayout jokeLayoutType = null;
+
 	public SimpleJokeListTest() {
-		super("edu.calpoly.android.lab3", SimpleJokeList.class);
+		super(SimpleJokeList.class);
 	}
 
 	@SmallTest
 	public void testAddJokeViaButton() {
-		ArrayList<Joke> m_arrJokeList = null;
-		m_arrJokeList = this.retrieveHiddenMember("m_arrJokeList",m_arrJokeList,getActivity());
-		EditText et = null;
-		Button bt = null;
-		final EditText m_vwJokeEditText = this.retrieveHiddenMember("m_vwJokeEditText",et,getActivity());
-		final Button m_vwJokeButton = this.retrieveHiddenMember("m_vwJokeButton",bt,getActivity());
-		assertEquals("Should be 3 default jokes",3,m_arrJokeList.size());
-		getActivity().runOnUiThread(new Runnable() {
+
+
+		Activity activity = getActivity();
+		final ArrayList<Joke> jokeList = this.retrieveHiddenMember("jokeList", jokeListType, activity);
+		final EditText jokeEditText = this.retrieveHiddenMember("jokeEditText", jokeEditTextType, activity);
+		final Button jokeButton = this.retrieveHiddenMember("jokeButton", jokeButtonType, activity);
+		assertEquals("Should be 3 default jokes", 3, jokeList.size());
+		activity.runOnUiThread(new Runnable() {
 			public void run() {
-				m_vwJokeEditText.setText("This is a test joke");
-				m_vwJokeButton.performClick();
+				jokeEditText.setText("This is a test joke");
+				jokeButton.performClick();
 			}
-			});
+		});
+		
 		// wait for the request to go through
 		getInstrumentation().waitForIdleSync();
-		assertEquals("Should be 4 jokes now",4,m_arrJokeList.size());
-		assertEquals("Ensure the joke we added is really there","This is a test joke",m_arrJokeList.get(3).getJoke());	
-		LinearLayout m_vwJokeLayout = null;
-		m_vwJokeLayout = this.retrieveHiddenMember("m_vwJokeLayout",m_vwJokeLayout,getActivity());
-		assertEquals("Should be 4 joke views",4,m_vwJokeLayout.getChildCount());
-		TextView tv = (TextView)m_vwJokeLayout.getChildAt(3);
+		assertEquals("Should be 4 jokes now", 4, jokeList.size());
+		assertEquals("Ensure the joke we added is really there","This is a test joke", jokeList.get(3).getJoke());	
+		LinearLayout jokeLayout = null;
+		jokeLayout = this.retrieveHiddenMember("jokeLayout", jokeLayout, getActivity());
+		assertEquals("Should be 4 joke views", 4, jokeLayout.getChildCount());
+		TextView tv = (TextView) jokeLayout.getChildAt(3);
 		assertEquals("Text view should also have the new joke","This is a test joke",tv.getText());
 	}
 	
 	@SmallTest
 	public void testAddJokeViaReturn() {
-		ArrayList<Joke> m_arrJokeList = null;
-		m_arrJokeList = this.retrieveHiddenMember("m_arrJokeList",m_arrJokeList,getActivity());
-		EditText et = null;
-		final EditText m_vwJokeEditText = this.retrieveHiddenMember("m_vwJokeEditText",et,getActivity());
-		assertEquals("Should be 3 default jokes",3,m_arrJokeList.size());
+		
+		final ArrayList<Joke> jokeList = this.retrieveHiddenMember("jokeList", jokeListType, getActivity());
+		final EditText jokeEditText = this.retrieveHiddenMember("jokeEditText", jokeEditTextType, getActivity());
+		assertEquals("Should be 3 default jokes", 3, jokeList.size());
+		
 		getActivity().runOnUiThread(new Runnable() {
 			public void run() {
-				m_vwJokeEditText.setText("This is a second test joke");
+				jokeEditText.setText("This is a second test joke");
 			}
-			});
+		});
 		sendKeys(KeyEvent.KEYCODE_ENTER);
-		assertEquals("Should be 4 jokes now",4,m_arrJokeList.size());
-		assertEquals("Ensure the joke we added is really there","This is a second test joke",m_arrJokeList.get(3).getJoke());	
-		LinearLayout m_vwJokeLayout = null;
-		m_vwJokeLayout = this.retrieveHiddenMember("m_vwJokeLayout",m_vwJokeLayout,getActivity());
-		assertEquals("Should be 4 joke views",4,m_vwJokeLayout.getChildCount());
-		TextView tv = (TextView)m_vwJokeLayout.getChildAt(3);
+		assertEquals("Should be 4 jokes now",4,jokeList.size());
+		assertEquals("Ensure the joke we added is really there","This is a second test joke",jokeList.get(3).getJoke());	
+		final LinearLayout jokeLayout = this.retrieveHiddenMember("jokeLayout", jokeLayoutType, getActivity());
+		assertEquals("Should be 4 joke views",4,jokeLayout.getChildCount());
+		TextView tv = (TextView)jokeLayout.getChildAt(3);
 		assertEquals("Text view should also have the new joke","This is a second test joke",tv.getText());
 	}
 
 	@SmallTest
 	public void testAddJokeViaDPadTrackBall() {
-		ArrayList<Joke> m_arrJokeList = null;
-		m_arrJokeList = this.retrieveHiddenMember("m_arrJokeList",m_arrJokeList,getActivity());
-		EditText et = null;
-		final EditText m_vwJokeEditText = this.retrieveHiddenMember("m_vwJokeEditText",et,getActivity());
-		assertEquals("Should be 3 default jokes",3,m_arrJokeList.size());
+		
+		final ArrayList<Joke> jokeList = this.retrieveHiddenMember("jokeList", jokeListType, getActivity());
+		final EditText jokeEditText = this.retrieveHiddenMember("jokeEditText", jokeEditTextType, getActivity());
+		assertEquals("Should be 3 default jokes",3,jokeList.size());
 		getActivity().runOnUiThread(new Runnable() {
 			public void run() {
-				m_vwJokeEditText.setText("This is a third test joke");
+				jokeEditText.setText("This is a third test joke");
 			}
-			});
+		});
+		
 		sendKeys(KeyEvent.KEYCODE_DPAD_CENTER);
-		assertEquals("Should be 4 jokes now",4,m_arrJokeList.size());
-		assertEquals("Ensure the joke we added is really there","This is a third test joke",m_arrJokeList.get(3).getJoke());	
-		LinearLayout m_vwJokeLayout = null;
-		m_vwJokeLayout = this.retrieveHiddenMember("m_vwJokeLayout",m_vwJokeLayout,getActivity());
-		assertEquals("Should be 4 joke views",4,m_vwJokeLayout.getChildCount());
-		TextView tv = (TextView)m_vwJokeLayout.getChildAt(3);
+		assertEquals("Should be 4 jokes now",4,jokeList.size());
+		assertEquals("Ensure the joke we added is really there","This is a third test joke",jokeList.get(3).getJoke());	
+
+		final LinearLayout jokeLayout = this.retrieveHiddenMember("jokeLayout", jokeLayoutType, getActivity());
+		assertEquals("Should be 4 joke views",4,jokeLayout.getChildCount());
+		TextView tv = (TextView)jokeLayout.getChildAt(3);
 		assertEquals("Text view should also have the new joke","This is a third test joke",tv.getText());
 	}
 
 	@SmallTest
 	public void testAddJokeButtonText() {
-		Button bt = null;
-		Button m_vwJokeButton = this.retrieveHiddenMember("m_vwJokeButton",bt,getActivity());
-		assertEquals("Check Button Text","Add Joke",m_vwJokeButton.getText());
+		final Button jokeButton = this.retrieveHiddenMember("jokeButton", jokeButtonType, getActivity());
+		assertEquals("Check Button Text","Add Joke",jokeButton.getText());
 	}
 
 	@SmallTest
 	public void testTextViewSize() {
-		LinearLayout m_vwJokeLayout = null;
-		m_vwJokeLayout = this.retrieveHiddenMember("m_vwJokeLayout",m_vwJokeLayout,getActivity());
-		TextView tv = (TextView)m_vwJokeLayout.getChildAt(1);
+		LinearLayout jokeLayout = null;
+		jokeLayout = this.retrieveHiddenMember("jokeLayout",jokeLayout,getActivity());
+		TextView tv = (TextView)jokeLayout.getChildAt(1);
 		assertEquals("Check text size",16.0,tv.getTextSize(),.001);
 	}
 
@@ -126,7 +133,7 @@ public class SimpleJokeListTest extends ActivityInstrumentationTestCase2<SimpleJ
 		}  
 		
 		// Boiler Plate Exception Checking. If any of these Exceptions are 
-		// throw it was becuase this method was called improperly.
+		// throw it was because this method was called improperly.
 		catch (IllegalArgumentException e) {
 			fail ("This is an Error caused by the UnitTest!\n Improper user of retrieveHiddenMember(...) -- IllegalArgumentException:\n Passed in the wrong object to Field.get(...)");
 		} catch (IllegalAccessException e) {
