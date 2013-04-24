@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import edu.calpoly.android.lab3.Joke;
-import edu.calpoly.android.lab3.SimpleJokeList;
+import edu.calpoly.android.lab3.AdvancedJokeList;
 
-public class SimpleJokeListTest extends ActivityInstrumentationTestCase2<SimpleJokeList> {
+public class SimpleJokeListTest extends ActivityInstrumentationTestCase2<AdvancedJokeList> {
 	
 	// Where's the TypeOf method in java?
 	private ArrayList<Joke> jokeListType = null;
@@ -23,7 +23,7 @@ public class SimpleJokeListTest extends ActivityInstrumentationTestCase2<SimpleJ
 	private LinearLayout jokeLayoutType = null;
 
 	public SimpleJokeListTest() {
-		super(SimpleJokeList.class);
+		super(AdvancedJokeList.class);
 	}
 
 	@SmallTest

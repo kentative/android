@@ -12,12 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import edu.calpoly.android.lab3.Joke;
-import edu.calpoly.android.lab3.AdvancedJokeList;
+import edu.calpoly.android.lab3.AdvancedJokeListStub;
 import edu.calpoly.android.lab3.JokeView;
 
-public class AdvancedJokeListTest extends ActivityInstrumentationTestCase2<AdvancedJokeList> {
+public class AdvancedJokeListTest extends ActivityInstrumentationTestCase2<AdvancedJokeListStub> {
 	public AdvancedJokeListTest() {
-		super("edu.calpoly.android.lab3", AdvancedJokeList.class);
+		super("edu.calpoly.android.lab3", AdvancedJokeListStub.class);
 	}
 
 	@SmallTest
@@ -136,7 +136,7 @@ public class AdvancedJokeListTest extends ActivityInstrumentationTestCase2<Advan
 		}  
 		
 		// Boiler Plate Exception Checking. If any of these Exceptions are 
-		// throw it was becuase this method was called improperly.
+		// throw it was because this method was called improperly.
 		catch (IllegalArgumentException e) {
 			fail ("This is an Error caused by the UnitTest!\n Improper user of retrieveHiddenMember(...) -- IllegalArgumentException:\n Passed in the wrong object to Field.get(...)");
 		} catch (IllegalAccessException e) {

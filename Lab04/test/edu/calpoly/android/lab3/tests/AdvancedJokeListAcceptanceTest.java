@@ -11,26 +11,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import edu.calpoly.android.lab3.AdvancedJokeList;
+import edu.calpoly.android.lab3.AdvancedJokeListStub;
 import edu.calpoly.android.lab3.Joke;
 import edu.calpoly.android.lab3.JokeListAdapter;
 import edu.calpoly.android.lab3.JokeView;
 import edu.calpoly.android.lab3.tests.FriendClass.FriendClassException;
 
-public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestCase2<AdvancedJokeList> {
+public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestCase2<AdvancedJokeListStub> {
 
 	private Instrumentation mInstrument = null;
 	
 	// AdvancedJokeList member variables
-	private AdvancedJokeList mActivity = null;
-	private Button m_vwJokeButton = null;
-	private ViewGroup m_vwJokeLayout = null;
-	private EditText m_vwJokeEditText = null;
-	private ArrayList<Joke> m_arrJokeList = null;
-	private JokeListAdapter m_jokeAdapter;
+	private AdvancedJokeListStub mActivity = null;
+	private Button jokeButton = null;
+	private ViewGroup jokeLayout = null;
+	private EditText jokeEditText = null;
+	private ArrayList<Joke> jokeList = null;
+	private JokeListAdapter jokeAdapter;
 	
 	public AdvancedJokeListAcceptanceTest() {
-		super("edu.calpoly.android.lab3", AdvancedJokeList.class);
+		super("edu.calpoly.android.lab3", AdvancedJokeListStub.class);
 	}
 
 	@Override
@@ -45,11 +45,11 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 
 		// Gather references to Activity member variables
 		try {
-			m_vwJokeButton = FriendClass.retrieveHiddenMember("m_vwJokeButton", m_vwJokeButton, mActivity);
-			m_vwJokeLayout = FriendClass.retrieveHiddenMember("m_vwJokeLayout", m_vwJokeLayout, mActivity);
-			m_vwJokeEditText = FriendClass.retrieveHiddenMember("m_vwJokeEditText", m_vwJokeEditText, mActivity);
-			m_arrJokeList = FriendClass.retrieveHiddenMember("m_arrJokeList", m_arrJokeList, getActivity());
-			m_jokeAdapter = FriendClass.retrieveHiddenMember("m_jokeAdapter", m_jokeAdapter, getActivity());
+			jokeButton = FriendClass.retrieveHiddenMember("jokeButton", jokeButton, mActivity);
+			jokeLayout = FriendClass.retrieveHiddenMember("jokeLayout", jokeLayout, mActivity);
+			jokeEditText = FriendClass.retrieveHiddenMember("jokeEditText", jokeEditText, mActivity);
+			jokeList = FriendClass.retrieveHiddenMember("jokeList", jokeList, getActivity());
+			jokeAdapter = FriendClass.retrieveHiddenMember("jokeAdapter", jokeAdapter, getActivity());
 		} catch (FriendClassException exc) {fail(exc.getMessage());}
 	}
 
@@ -59,33 +59,33 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 	 * Preconditions to Section 1
 	 */
 	public void testSec1PreConditions() {
-		assertNotNull("m_vwJokeEditText should not be null", m_vwJokeEditText);
-		assertNotNull("m_vwJokeButton should not be null", m_vwJokeButton);
+		assertNotNull("jokeEditText should not be null", jokeEditText);
+		assertNotNull("jokeButton should not be null", jokeButton);
 
-		assertNotNull("m_arrJokeList should not be null", m_arrJokeList);
-		assertEquals("m_arrJokeList should be pre-populated with 3 default jokes", 3, m_arrJokeList.size());
+		assertNotNull("jokeList should not be null", jokeList);
+		assertEquals("jokeList should be pre-populated with 3 default jokes", 3, jokeList.size());
 		
-		assertNotNull("m_vwm_vwJokeLayout should not be null", m_vwJokeLayout);
-		assertEquals("m_vwJokeLayout should be pre-populated with 3 default jokes", 3, m_vwJokeLayout.getChildCount());
+		assertNotNull("m_vwjokeLayout should not be null", jokeLayout);
+		assertEquals("jokeLayout should be pre-populated with 3 default jokes", 3, jokeLayout.getChildCount());
 		
-		View view = m_vwJokeLayout.getChildAt(1);
+		View view = jokeLayout.getChildAt(1);
 		if (view instanceof TextView) {
 			assertEquals("Checking text size",16.0,((TextView)view).getTextSize(),.001);
 		}
 		
-		for (int ndx = 0; ndx < m_vwJokeLayout.getChildCount(); ndx++) {
-			if (!(m_vwJokeLayout.getChildAt(ndx) instanceof TextView) &&
-			    !(m_vwJokeLayout.getChildAt(ndx) instanceof JokeView)) {
-				fail("m_vwJokeLayout should contain only TextView (if you haven't implemented the JokeView class) or JokeView objects and nothing else.");
+		for (int ndx = 0; ndx < jokeLayout.getChildCount(); ndx++) {
+			if (!(jokeLayout.getChildAt(ndx) instanceof TextView) &&
+			    !(jokeLayout.getChildAt(ndx) instanceof JokeView)) {
+				fail("jokeLayout should contain only TextView (if you haven't implemented the JokeView class) or JokeView objects and nothing else.");
 			}
 		}
-		assertEquals("Check Button Text","Add Joke",m_vwJokeButton.getText());
+		assertEquals("Check Button Text","Add Joke",jokeButton.getText());
 	}
 	
 	@SmallTest
 	/**
 	 * Testing Lab 3
-	 * Section 1.3 test m_vwJokeButton OnClickListenr
+	 * Section 1.3 test jokeButton OnClickListenr
 	 */
 	public void testAddJokeViaButton() {
 		final String jokeText = "Testing addJoke via Add Button...";
@@ -93,8 +93,8 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 		// Add the joke
 		mActivity.runOnUiThread(new Runnable() {
 			public void run() {
-				m_vwJokeEditText.setText(jokeText);
-				m_vwJokeButton.performClick();
+				jokeEditText.setText(jokeText);
+				jokeButton.performClick();
 			}
 		});
 		mInstrument.waitForIdleSync();
@@ -104,7 +104,7 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 	@SmallTest
 	/**
 	 * Testing Lab 3
-	 * Section 1.3 test m_vwJokeEditText OnKeyListener
+	 * Section 1.3 test jokeEditText OnKeyListener
 	 */
 	public void testAddJokeViaReturn() {
 		final String jokeText = "Testing addJoke via return key...";
@@ -112,7 +112,7 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 		// Add the joke
 		mActivity.runOnUiThread(new Runnable() {
 			public void run() {
-				m_vwJokeEditText.setText(jokeText);
+				jokeEditText.setText(jokeText);
 			}
 		});
 		mInstrument.waitForIdleSync();
@@ -124,7 +124,7 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 	@SmallTest
 	/**
 	 * Testing Lab 3
-	 * Section 1.3 test m_vwJokeEditText OnKeyListener
+	 * Section 1.3 test jokeEditText OnKeyListener
 	 */
 	public void testAddJokeViaDPadTrackBall() {
 		final String jokeText = "Testing addJoke via D-Pad Center & Track-Ball...";
@@ -132,7 +132,7 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 		// Add the joke
 		mActivity.runOnUiThread(new Runnable() {
 			public void run() {
-				m_vwJokeEditText.setText(jokeText);
+				jokeEditText.setText(jokeText);
 			}
 		});
 		mInstrument.waitForIdleSync();
@@ -142,15 +142,15 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 	}
 	
 	private void testForAddedJoke(String jokeText) {
-		assertEquals("m_arrJokeList should have 4 jokes now", 4, m_arrJokeList.size());
-		assertEquals("m_vwJokeLayout should have 4 jokes now", 4, m_vwJokeLayout.getChildCount());
-		assertEquals("Checking index of joke, that it was added to the end of m_arrJokeList", jokeText, m_arrJokeList.get(3).getJoke());
+		assertEquals("jokeList should have 4 jokes now", 4, jokeList.size());
+		assertEquals("jokeLayout should have 4 jokes now", 4, jokeLayout.getChildCount());
+		assertEquals("Checking index of joke, that it was added to the end of jokeList", jokeText, jokeList.get(3).getJoke());
 		
 		// App under test could be using JokeViews or TextViews at this point
-		View view = m_vwJokeLayout.getChildAt(3);
+		View view = jokeLayout.getChildAt(3);
 		if (view instanceof TextView) {
 			TextView tv = (TextView)view;
-			assertEquals("Checking index of joke, that it was added to the end of m_vwJokeLayout", jokeText, tv.getText().toString());
+			assertEquals("Checking index of joke, that it was added to the end of jokeLayout", jokeText, tv.getText().toString());
 		}
 		else if (view instanceof JokeView) {
 			JokeView jokeView = (JokeView)view;
@@ -158,10 +158,10 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 			try {
 				joke = FriendClass.retrieveHiddenMember("m_joke", joke, jokeView);
 			} catch (FriendClassException exc) {fail(exc.getMessage());}
-			assertEquals("Checking index of joke, that it was added to the end of m_vwJokeLayout", jokeText, joke.getJoke());
+			assertEquals("Checking index of joke, that it was added to the end of jokeLayout", jokeText, joke.getJoke());
 		}
 		else {
-			fail("m_vwJokeLayout should contain only TextView (if you haven't implemented the JokeView class) or JokeView objects and nothing else.");
+			fail("jokeLayout should contain only TextView (if you haven't implemented the JokeView class) or JokeView objects and nothing else.");
 		}
 	}
 }
