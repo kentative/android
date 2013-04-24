@@ -6,4 +6,9 @@
 		<item>Cartoonist found dead in home. Details are sketchy.</item>
 		<item>I wondered why the baseball was getting bigger. Then it hit me.</item>
 	</string-array>
+		<string name="addJokeBtnText">Add Joke</string>
+		<string name="jokeEditTextHint">Enter your joke here</string>
+		<string name="likeBtn">Like</string>
+		<string name="dislikeBtn">Dislike</string>
+		<string name="jokeToggleBtn">Expand and collapse joke description</string>
 </resources>

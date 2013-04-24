@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, SelectRestaurantActivity!</string>
+    <string name="app_name">Restaurant</string>
+  <string-array  name="restaurants"> <item>The Burger Place</item> <item>Mick\'s Pizza</item> <item>Four Buckets \'o Fruit</item> <item>Sam\'s Sushi</item> </string-array>
+
+</resources>

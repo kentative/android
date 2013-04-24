@@ -16,8 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class AdvancedJokeList extends Activity {
@@ -77,48 +75,24 @@ public class AdvancedJokeList extends Activity {
 		rowColors = new int[2];
 		rowColors[0] = resc.getColor(R.color.dark);
 		rowColors[1] = resc.getColor(R.color.light);
-		Joke[] jokes = null; //resc.getStringArray(R.array.jokeList);
-		
-		for (Joke joke : jokes) {
-			addJoke(joke);
-		}		
+//		Joke[] jokes = null; //resc.getStringArray(R.array.jokeList);
+//		
+//		for (Joke joke : jokes) {
+//			addJoke(joke);
+//		}		
 	}
 	
 	/**
 	 * Method used to encapsulate the code that initializes and sets the Layout
 	 * for this Activity. 
 	 */
-	protected void initLayout() {
+	protected void initLayout() {	
 		
-		// Main Layout
-		LinearLayout mainLayout = new LinearLayout(this);
-		mainLayout.setOrientation(LinearLayout.VERTICAL);
+		setContentView(R.layout.advanced);
 		
-		// Add Joke Layout (button and edit text view)
-		LinearLayout addJokeLayout = new LinearLayout(this);
-		addJokeLayout.setOrientation(LinearLayout.HORIZONTAL);
-		
-		// Joke Button
-		jokeButton = new Button(this);
-		jokeButton.setText("Add Joke");
-		addJokeLayout.addView(jokeButton);
-		
-		// Joke Edit Text
-		jokeEditText = new EditText(this);
-		jokeEditText.setLayoutParams(new LayoutParams(
-			LayoutParams.MATCH_PARENT, 
-			LayoutParams.WRAP_CONTENT));
-		addJokeLayout.addView(jokeEditText);
-
-		jokeLayout = new LinearLayout(this);
-		jokeLayout.setOrientation(LinearLayout.VERTICAL);
-		ScrollView scrollView = new ScrollView(this);
-		scrollView.addView(jokeLayout);
-		
-		mainLayout.addView(addJokeLayout);
-		mainLayout.addView(scrollView);
-		setContentView(mainLayout);
-		
+		jokeButton = (Button) findViewById(R.id.addJokeButton);
+		jokeEditText = (EditText) findViewById(R.id.newJokeEditText);
+		jokeLayout = (LinearLayout) findViewById(R.id.jokeListViewGroup);
 	}
 	
 	/**

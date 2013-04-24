@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 Note: You must use the following id's for this list of UI Components defined in
 	  AdvancedJokeList.java 
 	  	UI Component 					Required Resource ID
@@ -13,11 +13,46 @@ Note: You must use the following id's for this list of UI Components defined in
 	 This Root element is only here as a place holder to prevent compilation
      errors. Feel free to remove it and replace it with whatever you like.
 -->
-<FrameLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" 
+	android:orientation="vertical">
+	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"        
+        android:orientation="horizontal" >
+        
+	    <Button
+	        android:id="@+id/addJokeButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/addJokeBtnText" />
+	    
+	    <EditText
+	        android:id="@+id/newJokeEditText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:hint="@string/jokeEditTextHint" />
+	            
+    </LinearLayout>
     
-    
-    
-    
-    
-    
-</FrameLayout>
+	<ScrollView
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:fillViewport="true" >
+	    
+    	<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"	        
+	        android:orientation="vertical"
+	        android:id="@+id/jokeListViewGroup" >
+    	    
+    	    
+	    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
