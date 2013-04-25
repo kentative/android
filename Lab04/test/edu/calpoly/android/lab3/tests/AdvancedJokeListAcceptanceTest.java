@@ -11,18 +11,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import edu.calpoly.android.lab3.AdvancedJokeListStub;
+import edu.calpoly.android.lab3.AdvancedJokeList;
 import edu.calpoly.android.lab3.Joke;
 import edu.calpoly.android.lab3.JokeListAdapter;
 import edu.calpoly.android.lab3.JokeView;
 import edu.calpoly.android.lab3.tests.FriendClass.FriendClassException;
 
-public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestCase2<AdvancedJokeListStub> {
+public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestCase2<AdvancedJokeList> {
 
 	private Instrumentation mInstrument = null;
 	
 	// AdvancedJokeList member variables
-	private AdvancedJokeListStub mActivity = null;
+	private AdvancedJokeList mActivity = null;
 	private Button jokeButton = null;
 	private ViewGroup jokeLayout = null;
 	private EditText jokeEditText = null;
@@ -30,7 +30,7 @@ public class AdvancedJokeListAcceptanceTest extends ActivityInstrumentationTestC
 	private JokeListAdapter jokeAdapter;
 	
 	public AdvancedJokeListAcceptanceTest() {
-		super("edu.calpoly.android.lab3", AdvancedJokeListStub.class);
+		super("edu.calpoly.android.lab3", AdvancedJokeList.class);
 	}
 
 	@Override

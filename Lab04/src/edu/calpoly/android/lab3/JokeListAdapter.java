@@ -3,8 +3,12 @@ package edu.calpoly.android.lab3;
 import java.util.List;
 
 import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.BaseAdapter;
 
-public class JokeListAdapter {
+public class JokeListAdapter extends BaseAdapter {
 
 	/**
 	 * The application Context in which this JokeListAdapter is being used.
@@ -26,16 +30,16 @@ public class JokeListAdapter {
 	 * it is being used and the Collection of Joke objects to which it is bound.
 	 * m_nSelectedPosition will be initialized to Adapter.NO_SELECTION.
 	 * 
-	 * @param context
-	 *            The application Context in which this JokeListAdapter is being
-	 *            used.
+	 * @param context The application Context in which this JokeListAdapter is being used.
 	 * 
-	 * @param jokeList
-	 *            The Collection of Joke objects to which this JokeListAdapter
-	 *            is bound.
+	 * @param jokeList The Collection of Joke objects to which this JokeListAdapter is bound.
 	 */
 	public JokeListAdapter(Context context, List<Joke> jokeList) {
-		//TODO
+		
+		m_context = context;
+		m_jokeList = jokeList;
+		m_nSelectedPosition = Adapter.NO_SELECTION;
+		
 	}
 
 	/**
@@ -46,7 +50,41 @@ public class JokeListAdapter {
 	 *         currently selected Joke.
 	 */
 	public int getSelectedPosition() {
-		//TODO
-		return 0;
+		
+		return m_nSelectedPosition;
+	}
+
+	@Override
+	public int getCount() {
+		return m_jokeList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return m_jokeList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+
+		if (position < m_jokeList.size() -1 && position > -1) {
+			return position;
+		}
+		return -1;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		
+		Joke joke = m_jokeList.get(position);
+		JokeView jokeView;
+		if (convertView == null) {
+			jokeView = new JokeView(m_context, joke);
+		} else {
+			jokeView = (JokeView) convertView;
+		}
+		
+		jokeView.setJoke(joke);		
+		return jokeView;
 	}
 }

@@ -8,16 +8,15 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import edu.calpoly.android.lab3.AdvancedJokeList;
 import edu.calpoly.android.lab3.Joke;
-import edu.calpoly.android.lab3.AdvancedJokeListStub;
 import edu.calpoly.android.lab3.JokeView;
 
-public class AdvancedJokeListTest extends ActivityInstrumentationTestCase2<AdvancedJokeListStub> {
+public class AdvancedJokeListTest extends ActivityInstrumentationTestCase2<AdvancedJokeList> {
 	public AdvancedJokeListTest() {
-		super("edu.calpoly.android.lab3", AdvancedJokeListStub.class);
+		super("edu.calpoly.android.lab3", AdvancedJokeList.class);
 	}
 
 	@SmallTest

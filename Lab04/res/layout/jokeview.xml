@@ -15,53 +15,49 @@ Note: You must use the following id's for this list of UI Components defined in
 	 This Root element is only here as a place holder to prevent compilation
      errors. Feel free to remove it and replace it with whatever you like.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+       <Button
+           android:id="@+id/expandButton"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:focusable="false" />
 
-        <ImageButton
-            android:id="@+id/expandButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/jokeToggleBtn"
-            android:src="@drawable/expand" />
-
-        <TextView
-            android:id="@+id/jokeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </LinearLayout>
+       <TextView
+           android:id="@+id/jokeTextView"
+           android:focusable="false"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@id/expandButton"
+           android:padding="10dp"
+           android:ellipsize="end"
+           android:text="@string/jokeLongText"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
     
        <RadioGroup
            android:id="@+id/ratingRadioGroup"
+           android:focusable="false"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:layout_below="@id/jokeTextView"
            android:gravity="center_horizontal"
            android:orientation="horizontal" >
          
         <RadioButton
             android:id="@+id/likeButton"
+            android:focusable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/likeBtn" />
-
-        <Space
-            android:layout_width="30dp"
-            android:layout_height="match_parent" />
+            android:text="@string/likeBtn" />      
 
         <RadioButton
             android:id="@+id/dislikeButton"
+            android:focusable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dislikeBtn" />
 	</RadioGroup>
-</LinearLayout>
+
+</RelativeLayout>

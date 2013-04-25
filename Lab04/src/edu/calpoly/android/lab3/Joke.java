@@ -13,6 +13,13 @@ public class Joke {
 		Dislike
 	}
 	
+	public enum ViewState {
+		Expanded,
+		Collapsed
+	}
+	
+	private ViewState viewState;	
+
 	/** Contains the text of this joke **/
 	private String joke;
 	
@@ -44,6 +51,7 @@ public class Joke {
 	public Joke(String joke, Rating rating) {
 		this.joke = joke;
 		this.rating = rating;
+		this.viewState = ViewState.Collapsed;
 	}
 	
 	/**
@@ -96,6 +104,15 @@ public class Joke {
 	public String toString() {
 		return joke;
 	}
+	
+	public ViewState getViewState() {
+		return viewState;
+	}
+
+	public void setViewState(ViewState viewState) {
+		this.viewState = viewState;
+	}
+
 	
 	/**
 	 * An Object is equal to this Joke, if the Object is a Joke and its text is

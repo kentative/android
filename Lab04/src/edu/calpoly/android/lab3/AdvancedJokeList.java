@@ -1,12 +1,12 @@
 package edu.calpoly.android.lab3;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -15,8 +15,7 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ListView;
 
 public class AdvancedJokeList extends Activity {
 
@@ -45,7 +44,7 @@ public class AdvancedJokeList extends Activity {
 	protected ArrayList<Joke> jokeList;
 
 	/** LinearLayout used for maintaining a list of Views that each display Joke. **/
-	protected LinearLayout jokeLayout;
+	protected ListView jokeLayout;
 
 	/**
 	 * Background Color values used for alternating between light and dark rows
@@ -69,17 +68,21 @@ public class AdvancedJokeList extends Activity {
 		initLayout();
 		initAddJokeListeners();
 
-		// Load jokes from resource file
-		jokeList = new ArrayList<Joke>();
 		Resources resc = getResources();
 		rowColors = new int[2];
 		rowColors[0] = resc.getColor(R.color.dark);
 		rowColors[1] = resc.getColor(R.color.light);
-//		Joke[] jokes = null; //resc.getStringArray(R.array.jokeList);
-//		
-//		for (Joke joke : jokes) {
-//			addJoke(joke);
-//		}		
+		
+		jokeList = new ArrayList<Joke>();
+		jokeAdapter = new JokeListAdapter(this, jokeList);
+		jokeLayout.setAdapter(jokeAdapter);
+		jokeLayout.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
+		// Load jokes from resource file
+		String[] jokes = resc.getStringArray(R.array.jokeList);
+		for (String joke : jokes) {
+			addJoke(new Joke(joke));
+		}
 	}
 	
 	/**
@@ -92,7 +95,7 @@ public class AdvancedJokeList extends Activity {
 		
 		jokeButton = (Button) findViewById(R.id.addJokeButton);
 		jokeEditText = (EditText) findViewById(R.id.newJokeEditText);
-		jokeLayout = (LinearLayout) findViewById(R.id.jokeListViewGroup);
+		jokeLayout = (ListView) findViewById(R.id.jokeListViewGroup);
 	}
 	
 	/**
@@ -136,9 +139,7 @@ public class AdvancedJokeList extends Activity {
 	 * takes a single optional parameter, which should be encode in "UTF-8".
 	 * This parameter allows tells script to only retrieve Jokes whose author
 	 * name matches the value in the parameter.
-	 * 
 	 * param-1) "author": The author of the joke.
-	 * 
 	 * URL: http://simexusa.com/aac/getJokes.php?
 	 * 
 	 */
@@ -155,14 +156,9 @@ public class AdvancedJokeList extends Activity {
 	 * should be encode in "UTF-8":
 	 * 
 	 * param-1) "joke": The text of the joke.
-	 * 
 	 * param-2) "author": The author of the joke.
-	 * 
 	 * URL: http://simexusa.com/aac/addJoke.php?
-	 * 
-	 * @param joke
-	 *            The Joke to be uploaded to the server.
-	 * 
+	 * @param joke The Joke to be uploaded to the server.
 	 */
 	protected void uploadJokeToServer(Joke joke) {
 		// TODO
@@ -191,29 +187,6 @@ public class AdvancedJokeList extends Activity {
 	/**
 	 * Method used for encapsulating the logic necessary to properly initialize
 	 * a new joke, add it to the JokeList, and display it on screen.
-	 * @deprecated
-	 * @param jokeText A string containing the text of the Joke to add.
-	 */
-	private void addJoke(String jokeText) {
-
-		Joke joke = new Joke(jokeText);
-		if (jokeList.contains(joke)) {
-			return;
-		}
-		
-		jokeList.add(joke);
-		TextView jokeTextView = new TextView(this);
-		jokeTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 16);
-		jokeTextView.setBackgroundColor(
-			rowColors[jokeList.size()%2]);
-		jokeTextView.setText(joke.getJoke());
-		jokeLayout.addView(jokeTextView);
-		
-	}
-	
-	/**
-	 * Method used for encapsulating the logic necessary to properly initialize
-	 * a new joke, add it to the JokeList, and display it on screen.
 	 * 
 	 * @param joke The Joke to add.
 	 */
@@ -224,12 +197,7 @@ public class AdvancedJokeList extends Activity {
 		}
 		
 		jokeList.add(joke);
-		TextView jokeTextView = new TextView(this);
-		jokeTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 16);
-		jokeTextView.setBackgroundColor(
-			rowColors[jokeList.size()%2]);
-		jokeTextView.setText(joke.getJoke());
-		jokeLayout.addView(jokeTextView);
+		jokeAdapter.notifyDataSetChanged();
 		
 	}
 }
